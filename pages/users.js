@@ -3,7 +3,9 @@ import axios from "axios";
 import Link from "next/link";
 import Head from "next/head";
 
-export default function User({ users }) {
+import withAnalytics from "../src/hocs/withAnalytics";
+
+function Users({ users }) {
   return (
     <div>
       <Head>
@@ -21,7 +23,7 @@ export default function User({ users }) {
   );
 }
 
-User.getInitialProps = async () => {
+Users.getInitialProps = async () => {
   const response = await axios.get(
     "https://api.github.com/orgs/rocketseat/members"
   );
@@ -30,3 +32,5 @@ User.getInitialProps = async () => {
 
   return { users: response.data };
 };
+
+export default withAnalytics()(Users);
