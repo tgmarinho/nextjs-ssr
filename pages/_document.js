@@ -1,17 +1,28 @@
+// toda vez que mexer nesse arquivo tem que reiniciar o servidor
 import React from "react";
 import Document, { Head, Main, NextScript } from "next/document";
+import { ServerStyleSheet } from "styled-components";
 
 export default class MyDocument extends Document {
+  static getInitialProps({ renderPage }) {
+    const sheet = new ServerStyleSheet();
+    const page = renderPage(App => props =>
+      sheet.collectStyles(<App {...this.props} />)
+    );
+
+    const styleTags = sheet.getStyleElement();
+
+    return { ...page, styleTags };
+  }
+
   render() {
     return (
       <html>
-        <Head>
-          <style>{`body { background: #069}`}</style>
-          <body>
-            <Main />
-            <NextScript />
-          </body>
-        </Head>
+        <Head>{this.props.styleTags}</Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
       </html>
     );
   }
