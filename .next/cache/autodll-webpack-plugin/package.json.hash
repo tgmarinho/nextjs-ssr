@@ -1,1 +1,0 @@
-{"name":"nextssr","version":"1.0.0","main":"index.js","keywords":[],"author":{"name":"Thiago Marinho"},"license":"MIT","dependencies":{"next":"^9.1.2","react":"^16.11.0","react-dom":"^16.11.0"},"scripts":{"dev":"next","start":"next start","build":"next buid"},"readme":"ERROR: No README data found!","_id":"nextssr@1.0.0"}
