@@ -1,22 +1,21 @@
 import React from "react";
 import axios from "axios";
 
-import withAnalytics from "../src/hocs/withAnalytics";
+import withAnalytics from "~/components/withAnalytics";
 
-function Detail({ user }) {
-  return (
-    <div>
-      <h1>{user.login}</h1>
-      <img src={user.avatar_url} width="200" />
-    </div>
-  );
-}
+const User = ({ user }) => (
+  <div>
+    <h1>User: {user.login}</h1>
+    <img src={user.avatar_url} width="200" />
+  </div>
+);
 
-Detail.getInitialProps = async ({ query }) => {
+User.getInitialProps = async ({ query }) => {
   const response = await axios.get(
     `https://api.github.com/users/${query.user}`
   );
+
   return { user: response.data };
 };
 
-export default withAnalytics()(Detail);
+export default withAnalytics()(User);

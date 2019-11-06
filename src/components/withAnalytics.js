@@ -4,12 +4,12 @@ import ReactGA from "react-ga";
 
 export default () => Composed =>
   class extends Component {
-    static getInitialProps(ctx) {
+    static async getInitialProps(ctx) {
       return loadGetInitialProps(Composed, ctx);
     }
 
     componentDidMount() {
-      ReactGA.initialize("ID_ANALYTICS");
+      ReactGA.initialize("ID_DO_GA");
       ReactGA.pageview(window.location.pathname);
     }
 
